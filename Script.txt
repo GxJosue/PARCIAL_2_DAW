@@ -1,0 +1,23 @@
+CREATE TABLE alumno (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    carnet VARCHAR(100) NOT NULL);
+
+
+CREATE TABLE Materias (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    codigo VARCHAR(10) UNIQUE NOT NULL
+);
+
+
+CREATE TABLE Inscripciones (
+    id SERIAL PRIMARY KEY,
+    id_alumno INT NOT NULL,
+    id_materia INT NOT NULL,
+    ciclo VARCHAR(10) NOT NULL,
+    anio INT NOT NULL,
+    fecha_inscripcion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_alumno FOREIGN KEY (id_alumno) REFERENCES alumno(id),
+    CONSTRAINT fk_materia FOREIGN KEY (id_materia) references materias(id));
