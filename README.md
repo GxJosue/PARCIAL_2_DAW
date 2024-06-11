@@ -1,7 +1,7 @@
 # PARCIAL_2_DAW
 
 ## BASE DE DATOS
-Para este proyecto, decidimos utilizar una base de datos local. Adjuntamos un script para crear las tablas necesarias en la base de datos PostgreSQL.
+Para este proyecto, decidimos utilizar una base de datos local. Adjuntamos un script para crear las tablas necesarias en la base de datos PostgreSQL. (Recuerde utilizar sus credenciales)
 
 **Nombre de la base de datos:** postgres  
 _(Es necesario crear esta base de datos y luego ejecutar el script para la creación de las tablas)_
