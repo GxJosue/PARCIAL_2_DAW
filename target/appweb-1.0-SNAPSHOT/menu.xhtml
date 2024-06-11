@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>MENU</title>
+        <style>
+            .center-text {
+                text-align: center;
+            }
+            .content-container {
+                margin: 20px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 80%;
+                box-sizing: border-box;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <!-- Menú -->
+        <div class="center-text">
+            <h1>INSCRIPCIONES WEB APP</h1>
+        </div>
+        
+        <div style="text-align: center;">
+            <p:menubar>
+                <p:menuitem value="Materias" onclick="cargarPagina('contenidoSeleccionado', 'Materia.xhtml')"/>
+                <p:menuitem value="Inscripciones" onclick="cargarPagina('contenidoSeleccionado', 'inscripcion.xhtml')"/>
+                <p:menuitem value="Alumnos" onclick="cargarPagina('contenidoSeleccionado', 'index.xhtml')"/>
+            </p:menubar>
+        </div>
+        
+        <!-- Contenedor de contenido dinámico -->
+        <div class="content-container">
+            <!-- Indicador de carga -->
+            <div id="cargando" style="display: none;">Cargando...</div>
+            <!-- Aquí se mostrará el contenido seleccionado del menú -->
+            
+            <div id="contenidoSeleccionado">
+                <!-- Este div se actualizará con el contenido seleccionado del menú -->
+            </div>
+        </div>
+        
+        <!-- Script para cargar páginas de forma dinámica -->
+        <script>
+            function cargarPagina(contenedorId, url) {
+                var contenedor = document.getElementById(contenedorId);
+                var cargando = document.getElementById('cargando');
+                
+                // Mostrar indicador de carga
+                cargando.style.display = 'block';
+                
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        // Ocultar indicador de carga
+                        cargando.style.display = 'none';
+                        
+                        if (xhr.status === 200) {
+                            // Actualizar contenido del contenedor
+                            contenedor.innerHTML = xhr.responseText;
+                        } else {
+                            // Manejar errores de carga
+                            contenedor.innerHTML = 'Error al cargar la página';
+                        }
+                    }
+                };
+                xhr.open('GET', url, true);
+                xhr.send();
+            }
+        </script>
+    </h:body>
+</html>
